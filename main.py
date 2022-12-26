@@ -65,7 +65,10 @@ my_dict = {
 }
 now = datetime.now()
 month_day_year = now.strftime("%m%d%y")
+
+
+df = pd.DataFrame(my_dict).drop_duplicates(keep="first")
+# df.drop_duplicates(keep=False)
 print(my_dict)
-df = pd.DataFrame(my_dict)
 df.to_json(f"{month_day_year}.json", orient='records', lines=True)
 drive.close()
