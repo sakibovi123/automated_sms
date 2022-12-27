@@ -61,7 +61,7 @@ for e in elements:
 
 time.sleep(0.5)
 my_dict = {
-    "numbers": numbers
+    "customer_phone": numbers
 }
 now = datetime.now()
 month_day_year = now.strftime("%m%d%y")
@@ -71,4 +71,7 @@ df = pd.DataFrame(my_dict).drop_duplicates(keep="first")
 # df.drop_duplicates(keep=False)
 print(my_dict)
 df.to_json(f"{month_day_year}.json", orient='records', lines=True)
+
+
+
 drive.close()
