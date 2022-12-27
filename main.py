@@ -7,7 +7,10 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import pandas as pd
-
+import requests
+import json
+import twilio
+from twilio.rest import Client 
 
 drive = webdriver.Chrome()
 
@@ -68,10 +71,29 @@ month_day_year = now.strftime("%m%d%y")
 
 
 df = pd.DataFrame(my_dict).drop_duplicates(keep="first")
-# df.drop_duplicates(keep=False)
+
 print(my_dict)
-df.to_json(f"{month_day_year}.json", orient='records', lines=True)
+df.to_json(f"{month_day_year}.json", orient='records')
+
 
 
 
 drive.close()
+
+
+## sending sms to customers
+
+# account_sid = os.environ['AC2b0cc7c783ccc1e82f3771636dda5e73']
+# auth_token = os.environ['ba4b77ae45a0f981fecd32fcadf97f2b']
+client = Client("AC2b0cc7c783ccc1e82f3771636dda5e73", "ba4b77ae45a0f981fecd32fcadf97f2b")
+
+message = client.messages.create(
+         body='This is an automated sms please dont block this number :(',
+         from_='+14696198904',
+         to='+14356277657'
+     )
+
+print(message)
+
+
+
