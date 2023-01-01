@@ -45,7 +45,7 @@ dateSelector = wait.until(EC.element_to_be_clickable((
 ))).click()
 
 date = wait.until(EC.element_to_be_clickable((
-    By.CSS_SELECTOR, "li[data-range-key='Last 2 days']"
+    By.CSS_SELECTOR, "li[data-range-key='Today']"
 ))).click()
 
 
@@ -76,12 +76,9 @@ print(my_dict)
 df.to_json(f"{month_day_year}.json", orient='records')
 
 
-
-
 drive.close()
 
-
-## sending sms to customers
+# sending sms to customers
 
 # account_sid = os.environ['AC2b0cc7c783ccc1e82f3771636dda5e73']
 # auth_token = os.environ['ba4b77ae45a0f981fecd32fcadf97f2b']
