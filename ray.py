@@ -22,6 +22,7 @@ class SMSBot(webdriver.Chrome):
 
     def go_to_dashboard(self, url):
         self.get(url)
+        print("Dashboard hit............")
         
 
     def login_to_dashboard(self, username, password):
@@ -42,14 +43,23 @@ class SMSBot(webdriver.Chrome):
 
     def find_campaign_section(self):
         wait = WebDriverWait(self, 25)
-        select_campaign = wait.until(EC.presence_of_all_elements_located((
+        camp = wait.until(EC.element_to_be_clickable((
             By.CSS_SELECTOR, "body > aside:nth-child(1) > nav:nth-child(2) > a:nth-child(6)"
         )))
-        select_campaign.click()
+
+        camp.click()
+        
 
 
-    def find_campaign_id(self, camp_id):
-        pass
+    def find_campaign_id(self):
+        wait = WebDriverWait(self, 25)
+        select_camp = wait.until(EC.element_to_be_clickable((
+            By.CSS_SELECTOR, "a[href='https://sms.rayadvertising.com/campaign-details/CA10c2abdd46ff4089bb95ce1058636d12']"
+        )))
+
+        select_camp.click()
+
+        print("campaign found......")
 
     
 
