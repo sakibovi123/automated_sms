@@ -21,45 +21,68 @@ class SMSBot(webdriver.Chrome):
             
 
     def go_to_dashboard(self, url):
-        self.get(url)
-        print("Dashboard hit............")
-        
+        try:    
+            self.get(url)
+            print("Dashboard hit............")
+        except:
+            print("Url Not Found")
+
 
     def login_to_dashboard(self, username, password):
-        wait = WebDriverWait(self, 25)
-        name = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[placeholder='Username']")))
-        name.click()
-        name.send_keys(username)
-        passw = wait.until(EC.element_to_be_clickable((
-            By.CSS_SELECTOR, "input[placeholder='Password']"
-        )))
-        passw.click()
-        passw.send_keys(password)
-        
-        login = wait.until(EC.element_to_be_clickable((
-            By.CSS_SELECTOR, "button[type='submit']"
-        ))).click()
+        try:
+            wait = WebDriverWait(self, 25)
+            name = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[placeholder='Username']")))
+            name.click()
+            name.send_keys(username)
+            passw = wait.until(EC.element_to_be_clickable((
+                By.CSS_SELECTOR, "input[placeholder='Password']"
+            )))
+            passw.click()
+            passw.send_keys(password)
+            
+            login = wait.until(EC.element_to_be_clickable((
+                By.CSS_SELECTOR, "button[type='submit']"
+            ))).click()
+        except:
+            print("Atrribute error")
 
 
     def find_campaign_section(self):
-        wait = WebDriverWait(self, 25)
-        camp = wait.until(EC.element_to_be_clickable((
-            By.CSS_SELECTOR, "body > aside:nth-child(1) > nav:nth-child(2) > a:nth-child(6)"
-        )))
+        try:
 
-        camp.click()
-        
+            wait = WebDriverWait(self, 25)
+            camp = wait.until(EC.element_to_be_clickable((
+                By.CSS_SELECTOR, "body > aside:nth-child(1) > nav:nth-child(2) > a:nth-child(6)"
+            )))
+
+            camp.click()
+        except:
+            print("Campaign not found!")
 
 
     def find_campaign_id(self):
-        wait = WebDriverWait(self, 25)
-        select_camp = wait.until(EC.element_to_be_clickable((
-            By.CSS_SELECTOR, "a[href='https://sms.rayadvertising.com/campaign-details/CA10c2abdd46ff4089bb95ce1058636d12']"
-        )))
+        try:      
+            wait = WebDriverWait(self, 25)
+            select_camp = wait.until(EC.element_to_be_clickable((
+                By.CSS_SELECTOR, "a[href='https://sms.rayadvertising.com/campaign-details/CA10c2abdd46ff4089bb95ce1058636d12']"
+            )))
 
-        select_camp.click()
+            select_camp.click()
 
-        print("campaign found......")
+            print("campaign found......")
+        except:
+            print("Campaign id not found") 
 
+    
+    def find_number_section(self):
+        try:
+            wait = WebDriverWait(self, 25)
+            find_number_section = wait.until(EC.element_to_be_clickable((
+                By.CSS_SELECTOR, "body > aside:nth-child(1) > nav:nth-child(2) > a:nth-child(6)"
+            )))
+            find_number_section.click()
+            print("number section clicked........")
+        except:
+            print("Error!")
     
 
