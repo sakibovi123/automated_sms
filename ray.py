@@ -84,5 +84,9 @@ class SMSBot(webdriver.Chrome):
             print("number section clicked........")
         except:
             print("Error!")
+
+    def clear_all_cookies(self):
+        self.delete_all_cookies()
+        print("Cookies CLeared!.....")
     
 
